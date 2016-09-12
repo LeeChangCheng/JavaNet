@@ -18,7 +18,7 @@ InputStream in=s.getInputStream();
 byte[] buf=new byte[1024];
 int len=in.read(buf);
 System.out.println(new String(buf,0,len));
-String ip=s.getInetAddress().getHostAddress();
+String ip=s.getInetAddress().getHostAddress();//œ‘ æipµÿ÷∑
 System.out.println(ip+".......connected");
 	}
 
