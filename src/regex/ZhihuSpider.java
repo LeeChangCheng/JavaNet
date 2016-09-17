@@ -6,7 +6,7 @@ import java.util.regex.Pattern;
 
 public class ZhihuSpider {
 
-	
+	/*
 	 public String question;// 问题  
 	 public String questionDescription;// 问题描述  
 	 public String zhihuUrl;// 网页链接  
@@ -72,17 +72,33 @@ public class ZhihuSpider {
 	  return "问题：" + question + "\n" + "描述：" + questionDescription + "\n"  
 	    + "链接：" + zhihuUrl + "\n回答：" + answers.size() + "\n";  
 	 }  
-	public static void main(String[] args) {
+	 */
+	
+	public String question;// 问题
+	 public String zhihuUrl;// 网页链接
+	 public ArrayList<String> answers;// 存储所有回答的数组
+	public String zan;
+	 // 构造方法初始化数据
+	 public ZhihuSpider() {
+	  question = "";
+	  zhihuUrl = "";
+	  answers = new ArrayList<String>();
+	 }
+
+	 public String toString() {
+	  return "问题：" + question + "\n链接：" + zhihuUrl + "\n回答：" + answers + "\n点赞: "+zan;
+	 }
 		
-			  // 定义即将访问的链接  
-			  String url = "http://daily.zhihu.com/";
-			  // 访问链接并获取页面内容  
+		public static void main(String[] args) {
+			  // 定义即将访问的链接
+			  String url = "http://www.zhihu.com/explore/recommendations";
+			  // 访问链接并获取页面内容
 			  String content = Spider.SendGet(url);
-			  // 获取编辑推荐  
-			  ArrayList<ZhihuSpider> myZhihu = Spider.GetRecommendations(content);  
-			  // 打印结果  
-			  System.out.println(myZhihu);  
-			 }  
+			  // 获取该页面的所有的知乎对象
+			  ArrayList<ZhihuSpider> myZhihu = Spider.GetZhihu(content);
+			  // 打印结果
+			  System.out.println(myZhihu);
+			 }
 	
 	}  
 
