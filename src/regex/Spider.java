@@ -55,10 +55,10 @@ public class Spider {
 		  Pattern urlPattern = Pattern.compile("question_link.+?href=\"(.+?)\"");
 		  Matcher urlMatcher = urlPattern.matcher(content);
 		  //匹配点赞数
-		  Pattern zanPattern = Pattern.compile("count>.+?</span>");
+		  Pattern zanPattern = Pattern.compile("\"count\">(.+?)</span>");
 		  Matcher zanMatcher = zanPattern.matcher(content);
 		  // 问题和链接要均能匹配到
-		  boolean isFind = questionMatcher.find() && urlMatcher.find();
+		  boolean isFind = questionMatcher.find() && urlMatcher.find()&&zanMatcher.find();
 		  while (isFind) {
 		   // 定义一个知乎对象来存储抓取到的信息
 		   ZhihuSpider zhuhuTemp = new ZhihuSpider();
@@ -68,7 +68,7 @@ public class Spider {
 		   // 添加成功匹配的结果
 		   results.add(zhuhuTemp);
 		   // 继续查找下一个匹配对象
-		   isFind = questionMatcher.find() && urlMatcher.find();
+		   isFind = questionMatcher.find() && urlMatcher.find()&&zanMatcher.find();
 		  }
 		  return results;
 		 }

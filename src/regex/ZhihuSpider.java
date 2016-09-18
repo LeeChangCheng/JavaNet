@@ -1,5 +1,7 @@
 package regex;
 
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;  
 import java.util.regex.Matcher;  
 import java.util.regex.Pattern;  
@@ -86,10 +88,10 @@ public class ZhihuSpider {
 	 }
 
 	 public String toString() {
-	  return "问题：" + question + "\n链接：" + zhihuUrl + "\n回答：" + answers + "\n点赞: "+zan;
+	  return "问题：" + question + "\n链接：" + zhihuUrl + "\n回答：" + answers + "\n点赞: "+zan+"\n";
 	 }
 		
-		public static void main(String[] args) {
+		public static void main(String[] args) throws IOException {
 			  // 定义即将访问的链接
 			  String url = "http://www.zhihu.com/explore/recommendations";
 			  // 访问链接并获取页面内容
@@ -98,9 +100,16 @@ public class ZhihuSpider {
 			  ArrayList<ZhihuSpider> myZhihu = Spider.GetZhihu(content);
 			  // 打印结果
 			  System.out.println(myZhihu);
+			  //输出到txt
+			
+				FileWriter fw=new FileWriter("Zhihu.txt");
+				fw.write(myZhihu.toString()+'\n');
+				fw.flush();
+				fw.close();
+			}
 			 }
 	
-	}  
+
 
 
 	
